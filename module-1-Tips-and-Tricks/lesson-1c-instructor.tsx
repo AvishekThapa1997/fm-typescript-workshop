@@ -23,13 +23,13 @@ export const useArtistForm = (onSubmit: (value: Artist) => void) => {
   });
 };
 
+type ArtistForm = ReturnType<typeof useArtistForm>;
+
 export type ProductForm = ReturnType<typeof useArtistForm>;
 
 const ArtistForm: FC = props => {
-  const form = useForm({
-    defaultValues: defaultArtist,
-
-    onSubmit: async ({ value }) => {},
+  const form = useArtistForm(data => {
+    console.log(data);
   });
 
   return (
@@ -61,7 +61,7 @@ const ArtistForm: FC = props => {
   );
 };
 
-const AvatarField: FC<{ form: any }> = props => {
+const AvatarField: FC<{ form: ArtistForm }> = props => {
   const { form } = props;
   return (
     <form.Field name="avatar">

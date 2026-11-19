@@ -13,12 +13,21 @@ const defaultArtist: Artist = {
   avatar: "",
 };
 
+const useArtistForm = (onSubmit: (data: Artist) => Promise<void>) => {
+  return useForm({
+    defaultValues: defaultArtist,
+    onSubmit: async ({ value }) => {
+      onSubmit(value);
+    },
+  });
+};
+
+type ArtistForm = ReturnType<typeof useArtistForm>;
+
 const ArtistForm: FC = () => {
   // TODO: 1
-  const form = useForm({
-    defaultValues: defaultArtist,
-
-    onSubmit: async ({ value }) => {},
+  const form = useArtistForm(async data => {
+    console.log(data);
   });
 
   return (
@@ -51,7 +60,7 @@ const ArtistForm: FC = () => {
 };
 
 // TODO: 2
-const AvatarField: FC<{ form: any }> = props => {
+const AvatarField: FC<{ form: ArtistForm }> = props => {
   const { form } = props;
   return (
     <form.Field name="avatar">

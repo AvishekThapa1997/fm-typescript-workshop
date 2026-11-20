@@ -1,19 +1,21 @@
 import { Expect, TypesMatch } from "../util/test-utils";
 
-type LoadingPacket = {
+type LoadingPacket<T extends unknown[]> = {
   // args here -->
-  load: (...args: any) => Promise<unknown>;
+  load: (...args: T) => Promise<unknown>;
   // should match this return val                     -->
-  getPrefetchArgs: (cookies: Record<string, unknown>) => any;
+  getPrefetchArgs: (cookies: Record<string, unknown>) => [...T];
   // and also these args -->
-  getPrefetchUrl: (...args: any) => string;
+  getPrefetchUrl: (...args: T) => string;
 };
 
-type Loader = {
-  load: (...args: any) => Promise<unknown>;
+type Loader<T extends unknown[]> = {
+  load: (...args: T) => Promise<T>;
 };
 
-function createPrefetchLoader(packet: LoadingPacket): Loader {
+function createPrefetchLoader<T extends unknown[]>(
+  packet: LoadingPacket<T>,
+): Loader<T> {
   return null as any;
 }
 
@@ -33,7 +35,7 @@ const loader = createPrefetchLoader({
 });
 
 type Tests = [
-  Expect<TypesMatch<Parameters<typeof loader.load>, [number, string]>>
+  Expect<TypesMatch<Parameters<typeof loader.load>, [number, string]>>,
 ];
 
 loader.load(1, "Hello");

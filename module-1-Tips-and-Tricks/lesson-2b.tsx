@@ -17,7 +17,9 @@ type UpdateArtistResponse =
       changes: Partial<Artist>;
     };
 
-export async function updateArtist(payload: UpdateArtistPayload) {
+export async function updateArtist(
+  payload: UpdateArtistPayload,
+): Promise<UpdateArtistResponse> {
   const success = !payload.artistId.startsWith("7") ? true : false;
 
   if (!success) {

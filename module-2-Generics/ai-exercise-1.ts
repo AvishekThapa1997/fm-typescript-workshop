@@ -5,7 +5,7 @@ type User = {
   age: number;
 };
 
-function getById(users: User[], id: number) {
+function getById<T extends { id: number }>(users: T[], id: number) {
   return users.find(user => user.id === id);
 }
 

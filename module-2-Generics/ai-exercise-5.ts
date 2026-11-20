@@ -1,7 +1,7 @@
 type Loader<TArgs extends unknown[], TReturn = unknown> = {
   load: (...args: TArgs) => Promise<TReturn>;
   getUrl: (...args: TArgs) => string;
-  getPrefetchArgs: (cookies: Record<string, unknown>) => TArgs;
+  getPrefetchArgs: (cookies: Record<string, unknown>) => [...TArgs];
 };
 
 type LoaderResult<TArgs extends unknown[]> = {
@@ -9,7 +9,7 @@ type LoaderResult<TArgs extends unknown[]> = {
 };
 
 function createPrefetchLoader<Args extends unknown[]>(
-  packet: Loader<Args>
+  packet: Loader<Args>,
 ): LoaderResult<Args> {
   return null as any;
 }

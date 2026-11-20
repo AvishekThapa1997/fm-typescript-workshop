@@ -5,8 +5,8 @@ const users = [
   { id: 4, name: "Dustin", city: "Minneapolis", hobbies: ["Golf"] },
 ];
 
-function groupBy(items: any[], key: any) {
-  const result: Record<any, any[]> = {};
+function groupBy<T>(items: T[], key: keyof T) {
+  const result: Record<string, T[]> = {};
 
   for (const item of items) {
     const value = String(item[key]);
@@ -20,7 +20,7 @@ function groupBy(items: any[], key: any) {
   return result;
 }
 
-groupBy(users, "name");
+groupBy(users, "city");
 
 // @ts-expect-error
 groupBy(users, "xxx");

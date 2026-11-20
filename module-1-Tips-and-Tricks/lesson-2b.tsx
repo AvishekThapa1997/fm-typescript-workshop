@@ -7,6 +7,16 @@ type UpdateArtistPayload = {
   payload: Omit<Artist, "id">;
 };
 
+type UpdateArtistResponse =
+  | {
+      success: false;
+      error: string;
+    }
+  | {
+      success: true;
+      changes: Partial<Artist>;
+    };
+
 export async function updateArtist(payload: UpdateArtistPayload) {
   const success = !payload.artistId.startsWith("7") ? true : false;
 

@@ -28,5 +28,20 @@ type NotificationMetadata = {
 
 type NotificationKeys = keyof NotificationMetadata;
 
-// TODO
-export const allNotificationKeys: NotificationKeys[] = [];
+const _lookup: Record<NotificationKeys, 0> = {
+  artistAddedToChart: 0,
+  artistFollowerMilestone: 0,
+  artistNewTopSourceOfStream: 0,
+  releaseAddedToChart: 0,
+  releaseIngested: 0,
+  releaseRecentlyReleased: 0,
+  trackAddedToChart: 0,
+  trackAddedToPlaylist: 0,
+  trackNewTopSong: 0,
+  userAddedToLabelTeam: 0,
+  userInvitedToArtistTeam: 0,
+};
+
+const allNotificationKeys: NotificationKeys[] = Object.keys(
+  _lookup,
+) as NotificationKeys[];

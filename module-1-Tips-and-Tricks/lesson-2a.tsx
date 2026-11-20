@@ -2,8 +2,12 @@ import React, { FC } from "react";
 
 import { log, updateArtist } from "./utils/lesson-2-utils";
 
+type UpdateArtistParams = Parameters<typeof updateArtist>[0];
+
+type UpdateArtistResponse = Awaited<ReturnType<typeof updateArtist>>;
+
 //                                        TODO: 1
-async function updateArtistAndLog(payload: any) {
+async function updateArtistAndLog(payload: UpdateArtistParams) {
   const response = await updateArtist(payload);
   log(response);
 
@@ -12,7 +16,7 @@ async function updateArtistAndLog(payload: any) {
 
 const ArtistForm: React.FC = () => {
   const [name, setName] = React.useState("");
-  const [result, setResult] = React.useState<any>();
+  const [result, setResult] = React.useState<UpdateArtistResponse>();
 
   async function handleSave() {
     const next = await updateArtistAndLog({

@@ -22,7 +22,7 @@ type UpdateArtistResponse =
     };
 
 export async function updateArtist(
-  payload: UpdateArtistPayload
+  payload: UpdateArtistPayload,
 ): Promise<UpdateArtistResponse> {
   const success = Math.random() > 0.5 ? true : false;
 

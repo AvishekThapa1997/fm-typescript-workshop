@@ -13,4 +13,11 @@ let payload: Payload =
         { id: "2", name: "World" },
       ];
 
+if (Array.isArray(payload)) {
+  // Here is Array of @type Item
+  payload.length;
+} else {
+  // Here is @type Item
+  payload.id;
+}
 export {};

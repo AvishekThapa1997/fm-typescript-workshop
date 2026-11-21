@@ -25,6 +25,19 @@ function getAnimal(): AnyAnimal {
 
 const animal: AnyAnimal = getAnimal();
 
-function dealWithAnimal(animal: AnyAnimal) {}
+const assertNever = (arg: never) => {};
+
+function dealWithAnimal(animal: AnyAnimal) {
+  switch (animal.TYPE) {
+    case "CAT":
+      animal.name;
+      break;
+    case "DOG":
+      animal.obedient;
+      break;
+    default:
+      assertNever(animal);
+  }
+}
 
 export {};

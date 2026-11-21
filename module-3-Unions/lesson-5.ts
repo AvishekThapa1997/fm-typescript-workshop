@@ -9,4 +9,10 @@ class B {
 type AorB = A | B;
 let aOrB: AorB = Math.random() < 0.5 ? new A() : new B();
 
+if (aOrB instanceof A) {
+  aOrB.a;
+} else {
+  aOrB.b;
+}
+
 export {};

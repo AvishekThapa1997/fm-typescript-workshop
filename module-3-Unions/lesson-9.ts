@@ -10,7 +10,10 @@ class C {
   c: number = 0;
 }
 
-type AnyOfThese = A | B | C;
+class D {
+  d: number = 0;
+}
+type AnyOfThese = A | B | C | D;
 
 function getObject(): AnyOfThese {
   const val = Math.random();
@@ -22,6 +25,16 @@ function getObject(): AnyOfThese {
 
 const someValue = getObject();
 
-function useObject(val: AnyOfThese) {}
+function assertNever(arg: never) {}
+
+function useObject(val: AnyOfThese) {
+  if (val instanceof A) {
+  } else if (val instanceof B) {
+  } else if (val instanceof C) {
+  } else if (val instanceof D) {
+  } else {
+    assertNever(val); // Insist dev to check all types
+  }
+}
 
 export {};

@@ -17,14 +17,18 @@ type PropsForVariant<V extends Variant> = V extends "link"
 export type Props<T extends Variant> = BaseProps<T> & PropsForVariant<T>;
 
 function Button<T extends Variant>(
-  props: PropsWithChildren<Props<T>>
+  props: PropsWithChildren<Props<T>>,
 ): ReturnType<FC> {
   return <div>{/* TODO */}</div>;
 }
 
 export const Component: FC = () => {
+  const badProps = {
+    variant: "button" as const,
+  };
   return (
     <div>
+      <Button {...badProps}></Button>
       <Button variant="link" href="/">
         Link
       </Button>

@@ -2,13 +2,15 @@ type Expect<T extends true> = T;
 type ExpectNever<T extends never> = T;
 type ExpectFalse<T extends false> = T;
 
-type TypesMatch<T, U> = [T] extends [U]
+export type TypesMatch<T, U> = [T] extends [U]
   ? [U] extends [T]
     ? true
     : false
   : false;
 
 type Adam = "Adam";
+
+type Test = TypesMatch<12, {}>;
 
 type Tests = [
   Expect<true>,
@@ -26,6 +28,6 @@ type Tests = [
       { type: "a"; value: string } | { type: "b"; value: number },
       { type: "a"; value: string }
     >
-  >
+  >,
 ];
 export {};

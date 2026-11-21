@@ -3,14 +3,14 @@ import { Expect, ExpectFalse, TypesMatch } from "../util/test-utils";
 type TuplesAreSubsetOfEachOther<T, U> = T extends []
   ? true
   : U extends []
-  ? true
-  : T extends [infer THead, ...infer TRest]
-  ? U extends [infer UHead, ...infer URest]
-    ? TypesMatch<THead, UHead> extends true
-      ? TuplesAreSubsetOfEachOther<TRest, URest>
-      : false
-    : false
-  : false;
+    ? true
+    : T extends [infer THead, ...infer TRest]
+      ? U extends [infer UHead, ...infer URest]
+        ? TypesMatch<THead, UHead> extends true
+          ? TuplesAreSubsetOfEachOther<TRest, URest>
+          : false
+        : false
+      : false;
 
 // prevent unused warning
 // @ts-ignore
@@ -43,7 +43,7 @@ type Tests = [
   ExpectFalse<TuplesAreSubsetOfEachOther<[string], [number]>>,
   ExpectFalse<TuplesAreSubsetOfEachOther<[number | string], [string]>>,
   ExpectFalse<TuplesAreSubsetOfEachOther<["foo"], [string]>>,
-  ExpectFalse<TuplesAreSubsetOfEachOther<[string], ["foo"]>>
+  ExpectFalse<TuplesAreSubsetOfEachOther<[string], ["foo"]>>,
 ];
 
 export {};

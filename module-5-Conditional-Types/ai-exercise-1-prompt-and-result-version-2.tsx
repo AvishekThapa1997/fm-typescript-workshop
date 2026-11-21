@@ -27,11 +27,11 @@ type PropsForVariant<V extends Variant> = V extends "link"
   ? { href: string }
   : { href?: never };
 
-export type Props =
-  | (BaseProps<"link"> & PropsForVariant<"link">)
-  | (BaseProps<"button"> & PropsForVariant<"button">);
+export type Props<T extends Variant> = BaseProps<T> & PropsForVariant<T>;
 
-const Button: FC<PropsWithChildren<Props>> = props => {
+const Button: FC<
+  PropsWithChildren<Props<"link"> | Props<"button">>
+> = props => {
   return <div>{/* TODO */}</div>;
 };
 

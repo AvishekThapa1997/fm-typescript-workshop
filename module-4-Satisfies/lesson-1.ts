@@ -21,6 +21,10 @@ const product2: Product = {
   id: "1",
   name: "Product 1",
   price: 100,
+  // metadata_XXX: {
+  //   color: "red",
+  //   size: "XL",
+  // },
   // TODO: 1
 };
 
@@ -29,6 +33,7 @@ saveProduct({
   id: "1",
   name: "Product 1",
   price: 100,
+  metadata: {},
   // TODO: 2
 });
 
@@ -64,9 +69,9 @@ function doSave() {
         id: product.id,
         name: product.name,
         price: product.price,
-        metadataXXX: product.metadata,
-      }; // TODO: 4
-    })
+        // metadataXXX: product.metadata, Error
+      } satisfies Product; // TODO: 4
+    }),
   );
 }
 
